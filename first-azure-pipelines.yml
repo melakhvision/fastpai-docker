@@ -11,6 +11,7 @@ jobs:
   - task: Docker@2
     inputs:
       command: 'buildAndPush'
+      repository: 530476372149.dkr.ecr.us-east-1.amazonaws.com/fastazure
       Dockerfile: '**/Dockerfile'
       tags: 'latest'
 
