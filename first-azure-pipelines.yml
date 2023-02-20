@@ -5,21 +5,22 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: Docker@2
-  inputs:
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: 'latest'
+jobs:
+- job: Job1
+  steps:
+  - task: Docker@2
+    inputs:
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: 'latest'
 
-# Starter pipeline
-- task: ECRPushImage@1
-  inputs:
-    awsCredentials: 'aws_con'
-    regionName: 'us-east-1'
-    imageSource: 'imagename'
-    sourceImageName: '530476372149.dkr.ecr.us-east-1.amazonaws.com/fastazure'
-    repositoryName: '530476372149.dkr.ecr.us-east-1.amazonaws.com/fastazure'
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+- job: Job2
+  # Starter pipeline
+  steps:
+  - task: ECRPushImage@1
+    inputs:
+      awsCredentials: 'aws_con'
+      regionName: 'us-east-1'
+      imageSource: 'imagename'
+      sourceImageName: '530476372149.dkr.ecr.us-east-1.amazonaws.com/fastazure'
+      repositoryName: '530476372149.dkr.ecr.us-east-1.amazonaws.com/fastazure'
