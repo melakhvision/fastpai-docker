@@ -38,7 +38,7 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         docker build -t fastapi .
-        docker tag fastapi:latest 530476372149.dkr.ecr.us-east-1.amazonaws.com/fastapi:latest
+        docker tag fastapi:latest ${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
         # docker build -t ${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest .
         docker push ${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/fastapi:latest
         echo "image=${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}" >> $GITHUB_OUTPUT
