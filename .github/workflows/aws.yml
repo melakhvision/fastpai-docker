@@ -37,6 +37,6 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t 530476372149.dkr.ecr.us-east-1.amazonaws.com/nextjs:latest .
-        docker push 530476372149.dkr.ecr.us-east-1.amazonaws.com/nextjs:latest
-        echo "image=530476372149.dkr.ecr.us-east-1.amazonaws.com/nextjs:latest" >> $GITHUB_OUTPUT
+        docker build -t ${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest .
+        docker push ${{ secrets.ECR_ID }}.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+        echo "image=${{ secrets.ECR_ID }}.dkr.ecr.us-east-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}" >> $GITHUB_OUTPUT
